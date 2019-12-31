@@ -1,68 +1,79 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 리액트 JS 맴버쉽 수업
 
-## Available Scripts
+# 1 Fundamentals
 
-In the project directory, you can run:
+pass
 
-### `yarn start`
+# 1.1 Arrow Functions (7:41)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 디폴트 매개 변수 가능!
+- 화살표 함수 용법
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+# 1.2 Template Literals (2:14)
 
-### `yarn test`
+pass
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# 1.3 Object Destructuring (7:36)
 
-### `yarn build`
+- {} 으로 객체 변수 가져오기 + 변수 이름 바꿔서 가져오기.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```js
+const person = {
+  info1: "info1",
+  info2: "info2",
+  info3: "info3",
+  info4: {
+    ininfo1: "ininfo1",
+    ininfo2: "ininfo2"
+  }
+};
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+// const name = person.info1;
+// const age = person.info2;
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+const {
+  info1: name,
+  info2: age,
+  info3: food,
+  info4: { ininfo1: dinner, ininfo2: launch }
+} = person;
+```
 
-### `yarn eject`
+# 1.4 Spread Operator (6:44)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- 리스트나, 오브젝트를 flatten하고 싶을때.사용.!
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```js
+//spread operator 01
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+const days = ["mon", "tus", "wed"];
+const otherDays = ["thu", "fri", "sat"];
+const allDays = [...days, ...otherDays];
+console.log(allDays);
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+//spread operator 02
 
-## Learn More
+const ab = {
+  info1: "info1",
+  info2: "info2"
+};
+const cd = {
+  info3: "info3"
+};
+const two = { ...ab, ...cd };
+console.log(two);
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# 2.0 Setting Up the Project (4:33)
 
-### Code Splitting
+- .env파일 만든후 노드 경로 설정
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```js
+NODE_PATH = src;
+```
 
-### Analyzing the Bundle Size
+# 2.1 React Router Part One (9:43)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+# 2.2 React Router part Two (9:52)

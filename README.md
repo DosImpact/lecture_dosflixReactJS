@@ -80,4 +80,12 @@ NODE_PATH = src;
 
 - import App from "components/App";
 
+```
+미니 챌린지:
+//컴포넌트파일, 라우터 파일, index 파일을 만듬니다.
+// index에서 컴포넌트의 app를 돔에 연결
+// router.js 를 만들어서 루트,tv,search 경로를 만듭니다.
+// 작동하는지 확인.
+```
+
 # 2.2 React Router part Two (9:52)

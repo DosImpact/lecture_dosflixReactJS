@@ -76,4 +76,8 @@ NODE_PATH = src;
 
 # 2.1 React Router Part One (9:43)
 
+1. .env에서 src를 기본경로로 설정해서, 기본 import경로를 맞추주기.
+
+- import App from "components/App";
+
 # 2.2 React Router part Two (9:52)

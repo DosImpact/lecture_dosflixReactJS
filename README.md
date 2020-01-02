@@ -273,3 +273,53 @@ export default withRouter(({ location: { pathname } }) => (
   </Header>
 ));
 ```
+
+# 4.0 Introduction to The Movie DB API (3:27)
+
+- The Movie DB라는 무료 api 서비스를 이용할 거임.
+  [https://developers.themoviedb.org/3/movies/get-movie-details](https://developers.themoviedb.org/3/movies/get-movie-details)
+
+```
+API Key (v3 auth)
+59caaaf6db048b723bf9adf4f0380be1
+Example API Request
+https://api.themoviedb.org/3/movie/550?api_key=59caaaf6db048b723bf9adf4f0380be1
+API Read Access Token (v4 auth)
+eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1OWNhYWFmNmRiMDQ4YjcyM2JmOWFkZjRmMDM4MGJlMSIsInN1YiI6IjVlMGRlNmRhOTk3NGVlMDAxN2E1ZTcxOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZotukIhqCWdkwL5CqiT5i88A7UfcY-GVpBPxoFesUTE
+
+```
+
+# 4.1 Sexy Networking with Axios Instances (8:20)
+
+- npm install axios
+- axios를 사용하여 인스턴스를 만들고, 기본 url과 파라메터들을 넣습니다.
+- 참고) /로 시작하는 url은 절대경로로 url이 초기화되구, tv/popular는 상대경로로 baseurl에 덧붙여준다.
+
+```js
+import axios from "axios";
+
+const TvPopularParams = {
+  api_key: "59caaaf6db048b723bf9adf4f0380be1",
+  language: "en-US"
+};
+
+const api = axios.create({
+  baseURL: "https://api.themoviedb.org/3/"
+});
+
+const getMovie = async () =>
+  await api.get("tv/popular", { params: TvPopularParams });
+getMovie();
+
+export default api;
+```
+
+- 그냥 index.js에 이렇게 넣기만 하면 됨.!
+
+```js
+import "./api";
+```
+
+# 4.2 API Verbs part One (5:09)
+
+# 4.3 API Verbs part Two (9:21)

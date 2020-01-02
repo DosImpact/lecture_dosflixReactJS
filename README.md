@@ -1,17 +1,6 @@
 # 리액트 JS 맴버쉽 수업
 
-# 1 Fundamentals
-
-pass
-
-# 1.1 Arrow Functions (7:41)
-
-- 디폴트 매개 변수 가능!
-- 화살표 함수 용법
-
-# 1.2 Template Literals (2:14)
-
-pass
+## Tip: .env에서 NODE_PATH만 바꿔주면, 프로젝트 변경없이 연습이 가능하다.
 
 # 1.3 Object Destructuring (7:36)
 
@@ -32,10 +21,9 @@ const person = {
 // const age = person.info2;
 
 const {
-  info1: name,
-  info2: age,
-  info3: food,
-  info4: { ininfo1: dinner, ininfo2: launch }
+  info1, //그대로 가져오기.
+  info2: age, // 이름 바꿔서 가져오기.
+  info4: { ininfo1: dinner, ininfo2: launch } // 클래스 안에 내용물 가져오기 + 이름 바꿔서 가져오기.
 } = person;
 ```
 
@@ -44,14 +32,14 @@ const {
 - ...연산자. 리스트나, 오브젝트를 flatten하고 싶을때.사용.!
 
 ```js
-//spread operator 01
+//spread operator 01 - 리스트
 
 const days = ["mon", "tus", "wed"];
 const otherDays = ["thu", "fri", "sat"];
 const allDays = [...days, ...otherDays];
 console.log(allDays);
 
-//spread operator 02
+//spread operator 02 - object
 
 const ab = {
   info1: "info1",
@@ -64,11 +52,12 @@ const two = { ...ab, ...cd };
 console.log(two);
 ```
 
-[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes)
+- 배열 메소드들 참고  
+  [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes)
 
 # 2.0 Setting Up the Project (4:33)
 
-- .env파일 만든후 노드 경로 설정
+- .env파일 만든후 노드 경로 설정: 원래는 상대경로를 타고 왔다갔다 했음 -> 이제는 react덕에 env에서 지정한 src경로부터 쭉 내려감.
 
 ```js
 NODE_PATH = src;
@@ -76,7 +65,7 @@ NODE_PATH = src;
 
 # 2.1 React Router Part One (9:43)
 
-1. .env에서 src를 기본경로로 설정해서, 기본 import경로를 맞추주기.
+1. .env에서 src를 기본경로로 설정해서, 기본 import경로를 맞춰주기.
 
 - import App from "components/App";
 
@@ -246,3 +235,41 @@ export default App;
 ```
 
 # 3.4 Location Aware Header (7:46)
+
+- 스타일 컴포넌트에 인자를 전달하여, 참값이면, border-bottom을 투명이 아닌 색깔로 나타내기.
+
+```js
+
+  <Item current={pathname === "/"}>
+------------------------------------------------------------------------------------------
+  const Item = styled.li`
+  width: 80px;
+  height: 50px;
+  text-align: center;
+  border-bottom: 3px solid
+    ${props => (props.current ? "#3498db" : "transparent")};
+  transition: border-bottom 0.5s ease-in-out;
+`;
+```
+
+- withRouter from react-router-dom 은 다른 컴포넌트를 감싸는 컴포넌트이다. -> 감싸진 모든 컴포넌트에서 하나의 props를 사용할수 있음! ( 클래스 컴포넌트로 안만들고?? 다른구조인데..)
+
+```js
+import { Link, withRouter } from "react-router-dom";
+
+export default withRouter(({ location: { pathname } }) => (
+  <Header>
+    <List>
+      <Item current={pathname === "/"}>
+        <SLink to="/">Movies</SLink>
+      </Item>
+      <Item current={pathname === "/tv"}>
+        <SLink to="/tv">TV</SLink>
+      </Item>
+      <Item current={pathname === "/search"}>
+        <SLink to="/search">Search</SLink>
+      </Item>
+    </List>
+  </Header>
+));
+```

@@ -41,7 +41,7 @@ const {
 
 # 1.4 Spread Operator (6:44)
 
-- 리스트나, 오브젝트를 flatten하고 싶을때.사용.!
+- ...연산자. 리스트나, 오브젝트를 flatten하고 싶을때.사용.!
 
 ```js
 //spread operator 01
@@ -115,11 +115,12 @@ NODE_PATH = src;
 
 2. CSS를 적용시키는 방법은 여러가지가 있다.
 
-- js컴포넌트와 함께 css를 하나하나 만들어서 같이 따라 다니게 하는 방법
-- Header.module.css를 받아서 js처럼 임포트해서 사용하는방법 -> 인스타그램과 facebook이 사용하는방법-> 클래스이름에 랜덤마이즈한 이름이 붙는다.
+- 1. js컴포넌트와 함께 css를 하나하나 만들어서 같이 따라 다니게 하는 방법
+- 2. Header.module.css를 받아서 js처럼 임포트해서 사용하는방법 -> 인스타그램과 facebook이 사용하는방법-> 클래스이름에 랜덤마이즈한 이름이 붙는다.
 - example) css 모듈 사용 방법
 
-```
+```js
+----------------------------------------------------------------------
 //모듈을 만들고
 Header.modules.css
 
@@ -129,7 +130,7 @@ Header.modules.css
 .navList:hover {
   background-color: aqua;
 }
-
+----------------------------------------------------------------------
 //모둘을 임포트하여
 import React from "react";
 import styles from "./Header.module.css";
@@ -151,14 +152,97 @@ export default () => (
   </header>
   //Header_navList__1nHqT 이렇게 재 사용이 가능하게 랜덤마이즈 해서 들어간다.
 );
-
-
+----------------------------------------------------------------------
 ```
 
 # 3.1 CSS in React part Two (5:08)
 
 # 3.2 CSS in React part Three (6:13)
 
+- 3. 스타일드 컴포넌트를 이용하는 방법. | 클래스 이름을 외울 필요없다. raect J N 둘다 적용이 가능핟.
+
+```js
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const Header = styled.header``;
+
+const List = styled.ul`
+  display: flex;
+  &:hover {
+    background-color: blue;
+  }
+`;
+
+const Item = styled.li``;
+
+const SLink = styled(Link)``;
+
+export default () => (
+  <Header>
+    <List>
+      <Item>
+        <SLink to="/">Movies</SLink>
+      </Item>
+      <Item>
+        <SLink to="/tv">TV</SLink>
+      </Item>
+      <Item>
+        <SLink to="/search">Search</SLink>
+      </Item>
+    </List>
+  </Header>
+);
+```
+
 # 3.3 GlobalStyles and Header (9:00)
+
+- 글로벌한 스타일 컴포넌트 만들어서 App.js에 넣어주기. | 스타일 컴포넌트 스타일 마무리 하기.
+
+```
+npm install styled-reset
+```
+
+```js
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
+
+const globalStyles = createGlobalStyle`
+    ${reset};
+    a{
+        text-decoration:none;
+        color:inherit;
+    }
+    *{
+        box-sizing:border-box;
+    }
+    body{
+        font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size:12px;
+        background-color:rgba(20, 20, 20, 1);
+        color:white;
+        padding-top:50px;
+    }
+`;
+
+export default globalStyles;
+```
+
+```js
+import React from "react";
+import Router from "components/Router";
+import GlobalStyles from "components/GlobalStyles";
+function App() {
+  return (
+    <>
+      <Router />
+      <GlobalStyles />
+    </>
+  );
+}
+
+export default App;
+```
 
 # 3.4 Location Aware Header (7:46)

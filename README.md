@@ -643,8 +643,23 @@ const Section = ({ title, children }) => (
 
 # 6.10 React Helmet (7:54)
 
-# 6.11 Code Challenges (8:22)
+- Web페이지 위의 title를 쉽게 지정하기 위해, 다음 모듈 추가하가.
 
 ```
+- npm install react-helmet
+```
 
+# 6.11 Code Challenges (8:22)
+
+- 나는 Youtube비디오를 보고 싶어, api를 통해 youtube비디오도 여기서 2개를 보고 싶어.
+
+- 만든 영화사도 이미지로 표현을 해주자. 로고라든지.
+
+- 반지의 제왕 이미지 콜렉션,
+
+```
+IMDB Link
+Tabs inside of Moive / Show Details( YT Videos, Production Company & 나라)
+링크 콜랙션
+티비쇼에서는 시즌스들을 보여주기.
 ```

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Helmet from "react-helmet";
 import Section from "../../components/Section";
 import Loader from "../../components/Loader";
 import Poster from "../../components/Poster";
@@ -11,9 +12,18 @@ const Container = styled.div`
 
 const TVPresenter = ({ topRated, popular, airingToday, loading, error }) =>
   loading ? (
-    <Loader />
+    <>
+      <Helmet>
+        <title> Loading.. </title>
+      </Helmet>
+      <Loader />
+    </>
   ) : (
     <Container>
+      {" "}
+      <Helmet>
+        <title>Tv | Nomflix</title>
+      </Helmet>
       {topRated && topRated.length > 0 && (
         <Section title="Top Rated Shows">
           {topRated.map(show => (

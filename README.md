@@ -623,15 +623,21 @@ const Section = ({ title, children }) => (
 
 # 6.4 Message Component (11:07)
 
-- 검색 실패시, 애러 메시지, 또는 검색했는데 아무것도 안나와도 메시지 출력..(왜 안되징)
+- 검색 실패시, 애러 메시지, 또는 검색했는데 아무것도 안나와도 메시지 출력
 
 # 6.5 Poster Component part One (8:55)
 
 # 6.6 Rendering Poster Component (8:10)
 
+- Poster 컴포넌트 작성후 전부 적용!~ 미쳣따리.
+
 # 6.7 Poster Component part Two (15:34)
 
+- Poster 컴포넌트 스타일링하기.
+
 # 6.8 Detail Container part One (13:04)
+
+- detail 컴포넌트 디자인 및 변수
 
 # 6.9 Detail Container part Two (15:09)
 

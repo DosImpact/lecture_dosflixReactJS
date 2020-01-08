@@ -322,4 +322,323 @@ import "./api";
 
 # 4.2 API Verbs part One (5:09)
 
+- tv api 와 영화 api를 둘로 나누고, 가저올 준비.
+
+```js
+import axios from "axios";
+
+const params = {
+  api_key: "59caaaf6db048b723bf9adf4f0380be1",
+  language: "en-US"
+};
+
+const api = axios.create({
+  baseURL: "https://api.themoviedb.org/3/"
+});
+
+export const moviesApi = {
+  nowPlaying: () => api.get("movie/now_playing", { params }),
+  upcoming: () => api.get("movie/upcoming", { params }),
+  popular: () => api.get("movie/popular"),
+  movieDetail: id =>
+    api.get(`movie/${id}`, {
+      params: { ...params, append_to_response: "videos" }
+    }),
+  search: term =>
+    api.get("search/movie", {
+      params: { ...params, query: encodeURIComponent(term) }
+    })
+};
+
+export const tvApi = {
+  topRated: () => api.get("tv/top_rated", { params }),
+  popular: () => api.get("tv/popular", { params }),
+  airingToday: () => api.get("tv/airing_today"),
+  showDetail: id =>
+    api.get(`tv/${id}`, {
+      params: { ...params, append_to_response: "videos" }
+    }),
+  search: term =>
+    api.get("search/tv", {
+      params: { ...params, query: encodeURIComponent(term) }
+    })
+};
+```
+
 # 4.3 API Verbs part Two (9:21)
+
+pass
+
+# 5.0 Container Presenter Pattern part One (7:47)
+
+- 리엑트 컴포넌트 코딩 패턴: 컨테이너 프리젠터 패턴 | 컨테이너 data state api (데이터들)=> 프리젠터:보여줌.(스타일)
+- 모든 라우터스 안의 컴포넌트들을 , 각자의 폴더명 안에 Container, Presenter를 가진다.
+
+# 5.1 Container Presenter Pattern part Two (9:33)
+
+- 디자인 패턴이라는데, 익혀야지. ->
+- ? index.js에 기본적으로 export하는것이 적용이 되나본데...
+- Detail,Home,Search,TV 각각 컨테이너와 프리젠터 만들고 index연결시켜주기.
+
+```js
+------------------------------------------------index;
+import HomeContainer from "./HomeContainer";
+
+export default HomeContainer;
+------------------------------------------------container;
+import React from "react";
+import HomePresenter from "./HomePresenter";
+
+export default class extends React.Component {
+  state = {
+    nowPlaying: null,
+    upcoming: null,
+    popular: null,
+    error: null,
+    loading: true
+  };
+
+  render() {
+    const { nowPlaying, upcoming, popular, error, loading } = this.state;
+    return (
+      <HomePresenter
+        nowPlaying={nowPlaying}
+        upcoming={upcoming}
+        popular={popular}
+        error={error}
+        loading={loading}
+      />
+    );
+  }
+}
+------------------------------------------------presenter;
+export default () => "Detail";
+```
+
+# 5.2 Home Container (11:33)
+
+- 홈컨테이너 완성 | 영화 api에서 가져온 데이터들 전부 state에 담고, 완료되면 loading 종료시키기, error뜨면 처리해주고.
+
+```js
+import React from "react";
+import HomePresenter from "./HomePresenter";
+import { moviesApi } from "api";
+
+export default class extends React.Component {
+  state = {
+    nowPlaying: null,
+    upcoming: null,
+    popular: null,
+    error: null,
+    loading: true
+  };
+
+  async componentDidMount() {
+    try {
+      const {
+        data: { results: nowPlaying }
+      } = await moviesApi.nowPlaying();
+      const {
+        data: { results: upcoming }
+      } = await moviesApi.upcoming();
+      const {
+        data: { results: popular }
+      } = await moviesApi.popular();
+      this.setState({
+        nowPlaying,
+        upcoming,
+        popular
+      });
+    } catch {
+      this.setState({
+        error: "Can't find movies information."
+      });
+    } finally {
+      this.setState({
+        loading: false
+      });
+    }
+  }
+
+  render() {
+    console.log(this.state);
+    const { nowPlaying, upcoming, popular, error, loading } = this.state;
+    return (
+      <HomePresenter
+        nowPlaying={nowPlaying}
+        upcoming={upcoming}
+        popular={popular}
+        error={error}
+        loading={loading}
+      />
+    );
+  }
+}
+```
+
+# 5.3 TV Container (6:26)
+
+- TV도 마찬가지로 영화와 똑같은 로직을 가진다.
+
+# 5.4 Search Container (10:45)
+
+- 컴포넌트로 인자를 넘길때, 함수이름을 넘길수도 있어. | search컴포넌트 참고.
+
+# 5.5 Detail Container part One (8:17)
+
+- 데테일 컴포넌트에서 this.prop에서 url에 있는 변수인 id가 들어 있음!! , id가 아니라면 홈으로 푸쉬
+
+```js
+  async componentDidMount() {
+    const {
+      match: {
+        params: { id }
+      },
+      history: { push }
+    } = this.props;
+    const parsedId = parseInt(id);
+    if (isNaN(parsedId)) {
+      return push("/");
+    }
+  }
+```
+
+# 5.6 Detail Container part Two (13:21)
+
+- 디테일 컨테이너 완성 | url을 통해 id변수, url에 movie가 포함되있는지 받는다 | id를 파싱해서 api를 호출해서 값을 프리젠터에 넘긴다. | 애러시 홈으로 푸쉬
+
+```js
+import React from "react";
+import DetailPresenter from "./DetailPresenter";
+import { moviesApi, tvApi } from "../../api";
+
+export default class extends React.Component {
+  //클래스 생성자 | props에서 url에 movie가 포함되어 있으면 state의 isMoive 참으로 해주기.
+  constructor(props) {
+    super(props);
+    const {
+      location: { pathname }
+    } = props;
+    this.state = {
+      result: null,
+      error: null,
+      loading: true,
+      isMovie: pathname.includes("/movie/")
+    };
+  }
+  //props에서 id랑 push 얻어와서 id가 넘버면 api로 디테일 사항 가져오고, 아니라면 홈으로 푸쉬 해주기.
+  async componentDidMount() {
+    const {
+      match: {
+        params: { id }
+      },
+      history: { push }
+    } = this.props;
+    const { isMovie } = this.state;
+    const parsedId = parseInt(id);
+    if (isNaN(parsedId)) {
+      return push("/");
+    }
+    let result = null;
+    try {
+      if (isMovie) {
+        const request = await moviesApi.movieDetail(parsedId);
+        result = request.data;
+      } else {
+        const request = await tvApi.showDetail(parsedId);
+        result = request.data;
+      }
+    } catch {
+      this.setState({ error: "Can't find anything." });
+    } finally {
+      this.setState({ loading: false, result });
+    }
+  }
+  render() {
+    console.log(this.state);
+    const { result, error, loading } = this.state;
+    return <DetailPresenter result={result} error={error} loading={loading} />;
+  }
+}
+```
+
+# 5.7 Destructuring assignment with let (2:33)
+
+- 위아래가 같은 로직이다.
+
+```js
+let result = null;
+try {
+  if (isMovie) {
+    const request = await moviesApi.movieDetail(parsedId);
+    result = request.data;
+  } else {
+    ({ data: result } = await tvApi.showDetail(parsedId));
+  }
+}
+```
+
+# 6.0 Presenter Structure (7:04)
+
+- 각각의 프리젠터를 만들고, 프롭타입을 추가한다.
+
+# 6.1 HomePresenter and Section Components (10:56)
+
+- Section 컴포넌트를 만들었다. 타이틀과 child 를 받아 그리드로 표현해 준다. | section 컴포넌트에 차일드는 모든 하위 컴포넌트이고, 컴포넌트 호출시 하위에 그냥 적기만 하면됨
+
+```js
+const Section = ({ title, children }) => (
+  <Container>
+    <Title>{title}</Title>
+    <Grid>{children}</Grid>
+  </Container>
+);
+```
+
+```js
+<Container>
+  {nowPlaying && nowPlaying.length > 0 && (
+    <Section title="Now Playing">
+      {nowPlaying.map(movie => movie.title)}
+    </Section>
+  )}
+  {upcoming && upcoming.length > 0 && (
+    <Section title="Upcoming Movies">
+      {upcoming.map(movie => movie.title)}
+    </Section>
+  )}
+  {popular && popular.length > 0 && (
+    <Section title="Popular Movies">
+      {popular.map(movie => movie.title)}
+    </Section>
+  )}
+</Container>
+```
+
+# 6.2 TVPresenter and Loader Components (9:07)
+
+# 6.3 SearchPresenter Component (12:32)
+
+- 검색 컴포넌트를 만들었다. form과 input 과 리액트 컴포넌트관의 상호작용하는방법.
+
+# 6.4 Message Component (11:07)
+
+- 검색 실패시, 애러 메시지, 또는 검색했는데 아무것도 안나와도 메시지 출력..(왜 안되징)
+
+# 6.5 Poster Component part One (8:55)
+
+# 6.6 Rendering Poster Component (8:10)
+
+# 6.7 Poster Component part Two (15:34)
+
+# 6.8 Detail Container part One (13:04)
+
+# 6.9 Detail Container part Two (15:09)
+
+# 6.10 React Helmet (7:54)
+
+# 6.11 Code Challenges (8:22)
+
+```
+
+```

@@ -1,6 +1,6 @@
-import react from "react";
+import React from "react";
 
-class SearchPresenter extends react.Component {
+class SearchPresenter extends React.Component {
   render() {
     return <div>Search</div>;
   }

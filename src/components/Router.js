@@ -26,3 +26,9 @@ export default () => (
     </>
   </Router>
 );
+/**논리장
+ * react-router-dom 에서 HashRouter,Route,Redirect,Switch
+ * 해쉬 라우터를 이용 - route로 길과 컴포넌트를 빼준다.
+ *  그외 경로는 리다이렉트 시킨다.
+ * 아싸리, 여러길로 가는것을 원하지 않기떄문에 switch를 사용한다.
+ */

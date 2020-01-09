@@ -1,6 +1,6 @@
-import react from "react";
+import React from "react";
 
-class TVPresenter extends react.Component {
+class TVPresenter extends React.Component {
   render() {
     return <div>TV</div>;
   }

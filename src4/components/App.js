@@ -1,12 +1,7 @@
 import React from "react";
-import Detail from "../Routes/Detail";
+import Router from "./Router";
 
 function App() {
-  return (
-    <div>
-      <span>HI</span>
-      <Detail></Detail>
-    </div>
-  );
+  return <Router />;
 }
 export default App;

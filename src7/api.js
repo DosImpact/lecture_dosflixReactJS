@@ -6,7 +6,8 @@ const movieAPIparams = {
 };
 
 let tistoryAPIparams = {
-  access_token: ""
+  access_token: "",
+  blogName: ""
 };
 
 const movieDBAPI = Axios.create({ baseURL: "https://api.themoviedb.org/3/" });
@@ -28,5 +29,9 @@ export const tistoryAPI = {
   getBlogInfo: () =>
     tistoryDBAPI.get("/apis/blog/info", {
       params: { ...tistoryAPIparams, output: "json" }
+    }),
+  getBlogPostList: (blogName, page) =>
+    tistoryDBAPI.get("/apis/post/list", {
+      params: { ...tistoryAPIparams, output: "json", blogName, page }
     })
 };

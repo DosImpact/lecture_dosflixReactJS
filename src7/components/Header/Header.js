@@ -35,14 +35,14 @@ const NavHeader = ({ location: { pathname } }) => (
       <Item pathname={pathname === "/"}>
         <SLink to="/">Home</SLink>
       </Item>
-      <Item pathname={pathname === "/tv"}>
-        <SLink to="/tv">CSV->POST</SLink>
+      <Item pathname={pathname === "/post"}>
+        <SLink to="/post">포스트관리</SLink>
       </Item>
-      <Item pathname={pathname === "/search"}>
-        <SLink to="/search">포스트관리</SLink>
+      <Item pathname={pathname === "/reply"}>
+        <SLink to="/reply">댓글관리</SLink>
       </Item>
-      <Item pathname={pathname === "/detail"}>
-        <SLink to="/detail">댓글관리</SLink>
+      <Item pathname={pathname === "/csv"}>
+        <SLink to="/csv">CSV->POST</SLink>
       </Item>
     </List>
   </Header>

@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
+import { reset } from "styled-reset";
 
-const globalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
     ${reset};
     a{
         text-decoration:none;
@@ -13,9 +13,9 @@ const globalStyles = createGlobalStyle`
     body{
         font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-size:12px;
-        background-color:whitesmoke;
-        color:black;
+        background-color:#1b262c;
+        color:#bbe1fa;
+        padding-top:50px;
     }
 `;
-
-export default globalStyles;
+export default GlobalStyles;

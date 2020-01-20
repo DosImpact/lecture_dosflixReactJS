@@ -2,11 +2,10 @@ import React from "react";
 import {
   HashRouter as Router,
   Switch,
-  Redirect,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
-
-import Header from "components/Header";
+import Header from "./Header";
 import Home from "routes/Home";
 import Detail from "routes/Detail";
 

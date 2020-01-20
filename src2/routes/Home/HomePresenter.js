@@ -1,3 +1,1 @@
-const HomePresenter = () => "Home";
-
-export default HomePresenter;
+export default () => "HOME";

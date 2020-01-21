@@ -20,6 +20,7 @@ const List = styled.ul`
   align-items: center;
 `;
 const Item = styled.li`
+  flex-grow: ${props => (props.grow ? "2" : "1")};
   font-size: 17px;
   margin: 0px 20px;
   &:hover {
@@ -56,8 +57,8 @@ const Navbar = ({ location: { pathname } }) => (
       <HeaderColumn>
         <List>
           <Item></Item>
-          <Item>
-            <SLink to="/" current={pathname === "/"}>
+          <Item grow>
+            <SLink to="/" current={pathname === "/"} grow>
               HOME
             </SLink>
           </Item>

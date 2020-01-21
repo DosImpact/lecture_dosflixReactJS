@@ -15,6 +15,8 @@
 +   "build": "react-app-rewired build",
 -   "test": "react-scripts test",
 +   "test": "react-app-rewired test",
+또는
+    "antd": "react-app-rewired start",
 }
 ```
 

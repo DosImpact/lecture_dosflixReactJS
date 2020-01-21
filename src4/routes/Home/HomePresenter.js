@@ -31,10 +31,11 @@ const HomePresenter = () => (
       </SubMenu>
 
       <Menu.Item key="5">
-        <span>
-          <Icon type="laptop" />
-          <Link to="/home/option3"> subnav 2</Link>
-        </span>
+        <Link to="/home/option3">
+          <span>
+            <Icon type="laptop" /> subnav 2
+          </span>
+        </Link>
       </Menu.Item>
 
       <SubMenu

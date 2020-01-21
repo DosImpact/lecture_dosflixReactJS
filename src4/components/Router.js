@@ -14,9 +14,9 @@ export default () => (
     <Router>
       <Header />
       <Switch>
-        <Route path="/" exact component={Home}></Route>
+        <Route path="/home" component={Home}></Route>
         <Route path="/detail" exact component={Detail}></Route>
-        <Redirect from="*" to="/"></Redirect>
+        <Redirect from="*" to="/home"></Redirect>
       </Switch>
     </Router>
   </>

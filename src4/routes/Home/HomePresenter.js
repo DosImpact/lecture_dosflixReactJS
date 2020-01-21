@@ -1,165 +1,60 @@
 import React from "react";
-import {
-  Avatar,
-  Box,
-  Button,
-  Card,
-  Heading,
-  Link,
-  Text,
-  TextField,
-  Image
-} from "gestalt";
-import "gestalt/dist/gestalt.css";
+import { Layout, Menu, Breadcrumb, Icon } from "antd";
+import { Link } from "react-router-dom";
 
-const Section = ({ children, title }) => (
-  <Box padding={2}>
-    <Box marginBottom={1}>
-      <Heading size="xs">{title}</Heading>
-    </Box>
-    {children}
-  </Box>
-);
-const SunSection = ({ children, title, subtitle }) => (
-  <Box padding={2}>
-    <Box marginBottom={1} display="flex">
-      <Heading size="xs">{title}</Heading>
-      <Heading size="xs"> {subtitle}</Heading>
-    </Box>
-    {children}
-  </Box>
-);
+const { SubMenu } = Menu;
+const { Header, Content, Sider } = Layout;
+
 const HomePresenter = () => (
-  <Box padding={2}>
-    <Box padding={2} color="gray" height={120}></Box>
-    <Box
-      display="flex"
-      direction="column"
-      marginTop={2}
-      color="green"
-      height={120}
+  <Sider width={200} style={{ background: "#fefefe" }}>
+    <Menu
+      mode="inline"
+      defaultSelectedKeys={["1"]}
+      defaultOpenKeys={["sub1"]}
+      style={{ height: "100%", borderRight: 0 }}
     >
-      <Box> This is title</Box>
-      <Box> wow!</Box>
-    </Box>
-
-    <SunSection title="Example" subtitle="EX">
-      <Box>JI</Box>
-    </SunSection>
-    <Box column={6} paddingX={2}>
-      <Image
-        alt="Tropic greens: The taste of Petrol and Porcelain | Interior design, Vintage Sets and Unique Pieces agave"
-        color="rgb(231, 186, 176)"
-        naturalHeight={751}
-        naturalWidth={564}
-        src="https://i.pinimg.com/236x/ae/c9/ea/aec9eadd89aa51a9b753b221f3bcce12.jpg"
+      <SubMenu
+        key="sub1"
+        title={
+          <span>
+            <Icon type="user" />
+            subnav 1
+          </span>
+        }
       >
-        <Box padding={3}>
-          <Text color="white">
-            Tropic greens: The taste of Petrol and Porcelain
-          </Text>
-        </Box>
-      </Image>
-    </Box>
-    <Section title="Avatar">
-      <Box width={120}>
-        <Avatar
-          src="https://s.hdnux.com/photos/70/67/71/14909045/3/920x920.jpg"
-          name="Jeanette Epps"
-        />
-      </Box>
-    </Section>
+        <Menu.Item key="1">
+          <Link to="/home/option1">option1</Link>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Link to="/home/option2">option1</Link>
+        </Menu.Item>
+      </SubMenu>
 
-    <Section title="Button">
-      <Button text="Button" />
-    </Section>
+      <Menu.Item key="5">
+        <span>
+          <Icon type="laptop" />
+          <Link to="/home/option3"> subnav 2</Link>
+        </span>
+      </Menu.Item>
 
-    <Section title="Box">
-      <Box display="flex">
-        <Box column={4} color="lightGray">
-          <Box maxWidth={200} padding={2} column={12}>
-            <Card>
-              <Link href="https://pinterest.com">
-                <Avatar
-                  name="Ben Silbermann"
-                  src="https://image.ibb.co/dzLoRv/Ben_Silberman.jpg"
-                />
-                <Box paddingX={3} paddingY={2}>
-                  <Text align="center" bold>
-                    {"Ben"}
-                  </Text>
-                </Box>
-              </Link>
-              <Button color="red" text="Follow" />
-            </Card>
-          </Box>
-        </Box>
-        <Box column={2} color="darkGray">
-          <Box maxWidth={200} padding={2} column={12}>
-            <Card>
-              <Link href="https://pinterest.com">
-                <Avatar
-                  name="Ben Silbermann"
-                  src="https://image.ibb.co/dzLoRv/Ben_Silberman.jpg"
-                />
-                <Box paddingX={3} paddingY={2}>
-                  <Text align="center" bold>
-                    {"Ben"}
-                  </Text>
-                </Box>
-              </Link>
-              <Button color="red" text="Follow" />
-            </Card>
-          </Box>
-        </Box>
-        <Box column={6} color="lightGray">
-          <Box maxWidth={200} padding={2} column={12}>
-            <Card>
-              <Link href="https://pinterest.com">
-                <Avatar
-                  name="Ben Silbermann"
-                  src="https://image.ibb.co/dzLoRv/Ben_Silberman.jpg"
-                />
-                <Box paddingX={3} paddingY={2}>
-                  <Text align="center" bold>
-                    {"Ben"}
-                  </Text>
-                </Box>
-              </Link>
-              <Button color="red" text="Follow" />
-            </Card>
-          </Box>
-        </Box>
-      </Box>
-    </Section>
-
-    <Section title="Card">
-      <Box maxWidth={200} padding={2} column={12}>
-        <Card>
-          <Link href="https://pinterest.com">
-            <Avatar
-              name="Ben Silbermann"
-              src="https://image.ibb.co/dzLoRv/Ben_Silberman.jpg"
-            />
-            <Box paddingX={3} paddingY={2}>
-              <Text align="center" bold>
-                {"Ben"}
-              </Text>
-            </Box>
-          </Link>
-          <Button color="red" text="Follow" />
-        </Card>
-      </Box>
-    </Section>
-
-    <Section title="Text">
-      <Text>Text</Text>
-    </Section>
-
-    <Section title="TextField">
-      <TextField onChange={() => {}} id="textfield" placeholder="Placeholder" />
-    </Section>
-  </Box>
+      <SubMenu
+        key="sub3"
+        title={
+          <span>
+            <Icon type="notification" />
+            <Link to="/home/option3">option3</Link>
+          </span>
+        }
+      >
+        <Menu.Item key="9">
+          <Link to="/home/option4">option4</Link>
+        </Menu.Item>
+        <Menu.Item key="10">
+          <Link to="/home/option5">option5</Link>
+        </Menu.Item>
+      </SubMenu>
+    </Menu>
+  </Sider>
 );
 
 export default HomePresenter;

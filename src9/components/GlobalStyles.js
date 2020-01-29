@@ -15,6 +15,9 @@ const globalStyles = createGlobalStyle`
         font-size:16px;
         margin-top:50px;
     }
+    strong{
+        font-weight:600;
+    }
 `;
 
 export default globalStyles;

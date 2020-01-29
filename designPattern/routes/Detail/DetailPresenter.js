@@ -1,3 +1,5 @@
-const DetailPresenter = () => "Detail";
+import React from "react";
 
-export default DetailPresenter;
+export default () => {
+  return <>Detail</>;
+};

@@ -6,8 +6,8 @@ import {
   Redirect
 } from "react-router-dom";
 import Header from "./Header";
-import Home from "routes/Home";
-import Detail from "routes/Detail";
+import Home from "../routes/Home";
+import Detail from "../routes/Detail";
 
 export default () => (
   <>

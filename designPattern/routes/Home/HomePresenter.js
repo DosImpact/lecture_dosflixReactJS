@@ -1,3 +1,5 @@
-const HomePresenter = () => "Home";
+import React from "react";
 
-export default HomePresenter;
+export default () => {
+  return <>HOME</>;
+};

@@ -4,7 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 const GridWrapp = styled.div`
   height: 400px;
-
+  width: 100%;
+  max-width: 1200px;
+  margin: 0px auto;
   display: grid;
   gap: 10px;
   padding: 50px;
@@ -39,6 +41,7 @@ const GridArticle = styled.div`
 const GridColumn = styled.div``;
 const Container = styled.div`
   height: 200px;
+  margin: 50px 10px;
 `;
 const Title = styled.div`
   font-weight: 300;
@@ -52,13 +55,16 @@ const Content = styled.div`
 const Back = styled.a`
   border-bottom: 1px solid blueviolet;
 `;
-function BackLink({ title, content, haslink }) {
+function BackLink({ haslinkTitle, haslinkContent, haslink }) {
   return (
     <Back href="#">
       {haslink ? (
         <>
           <FontAwesomeIcon icon={faArrowLeft} />
-          <span> GO BACK</span>
+          <span>
+            {" "}
+            {haslinkTitle} : {haslinkContent}
+          </span>
         </>
       ) : (
         ""
@@ -66,14 +72,23 @@ function BackLink({ title, content, haslink }) {
     </Back>
   );
 }
-
-const Parap = ({ title, content, haslink }) => (
+const Parap = ({ title, content, haslink, haslinkTitle, haslinkContent }) => (
   <Container>
     <Title>{title}</Title>
     <Content>{content}</Content>
-    <BackLink haslink={haslink} />
+    <BackLink
+      haslink={haslink}
+      haslinkTitle={haslinkTitle}
+      haslinkContent={haslinkContent}
+    />
   </Container>
 );
+
+const Article = styled.article`
+  width: 100%;
+  max-width: 1200px;
+  margin: 0px auto;
+`;
 
 export default () => {
   return (
@@ -85,13 +100,33 @@ export default () => {
           <GridItem></GridItem>
         </GridWrapp>
       </article>
-      <article>
+      <Article>
         <GridArticle>
           <GridColumn>
             <Parap
               haslink
+              haslinkTitle="GO BACK"
+              haslinkContent="NEVER ~"
               title="EXPLORE THE BASICS"
               content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo perspiciatis ipsa perferendis asperiores illo inventore, ducimus iste porro doloribus, consequatur ex omnis, odit esse tenetur pariatur? Deleniti necessitatibus quae explicabo!"
+            />
+            <Parap
+              haslink
+              haslinkTitle="fontawesome"
+              haslinkContent="MULTIDEA ~"
+              title="Year 2014 Client"
+            />
+            <Parap
+              haslink
+              haslinkTitle="GO BACK"
+              haslinkContent="NEVER ~"
+              title="Neue Content DesignBASICS"
+            />
+            <Parap
+              haslink
+              haslinkTitle="GO BACK"
+              haslinkContent="NEVER ~"
+              title="EXPLORE THE BASICS"
             />
           </GridColumn>
           <GridColumn>
@@ -109,7 +144,7 @@ export default () => {
             />
           </GridColumn>
         </GridArticle>
-      </article>
+      </Article>
     </>
   );
 };

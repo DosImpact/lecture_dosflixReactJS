@@ -96,7 +96,6 @@ export default withRouter(({ location: { pathname } }) => (
       <div>1587-1234</div>
       <div>오전 09:00 - 오후 18:00</div>
     </HeaderItem>
-
     <div>
       <Link to="/">
         <FontAwesomeIcon size="2x" icon={faBars} />

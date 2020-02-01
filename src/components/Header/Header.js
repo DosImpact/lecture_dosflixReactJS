@@ -19,7 +19,7 @@ const Header = styled.header`
 const List = styled.ul`
   display: flex;
 `;
-
+//transparent없이 border설정하면, bordera가 없기 떄문에 border가 생길때마다 content부분이 줄어들어.
 const Item = styled.li`
   width: 80px;
   height: 50px;

@@ -36,7 +36,6 @@ const ImageContainer = styled.div`
     }
   }
 `;
-
 const Title = styled.span`
   display: block;
   margin-bottom: 3px;

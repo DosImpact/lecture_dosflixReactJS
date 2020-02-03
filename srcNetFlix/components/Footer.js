@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { Icon } from 'react-icons-kit';
-import { iosWorld } from 'react-icons-kit/ionicons/iosWorld';
-import { arrowSortedDown } from 'react-icons-kit/typicons/arrowSortedDown';
-import { generateMedia } from 'styled-media-query';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+import { Icon } from "react-icons-kit";
+import { iosWorld } from "react-icons-kit/ionicons/iosWorld";
+import { arrowSortedDown } from "react-icons-kit/typicons/arrowSortedDown";
+
+import { generateMedia } from "styled-media-query";
 
 class Footer extends Component {
   state = {
@@ -21,7 +23,7 @@ class Footer extends Component {
   render() {
     return (
       <FooterContainer>
-        <span style={{ marginLeft: '15%', fontSize: '1.125rem' }}>
+        <span style={{ marginLeft: "15%", fontSize: "1.125rem" }}>
           Questions?<Link to="/">Call 1-877-742-1335</Link>
         </span>
         <div className="footer-columns">
@@ -104,7 +106,7 @@ class Footer extends Component {
         )}
         <br />
         <span
-          style={{ marginLeft: '15%', fontSize: '0.9rem', marginTop: '2rem' }}
+          style={{ marginLeft: "15%", fontSize: "0.9rem", marginTop: "2rem" }}
         >
           Netflix Canada
         </span>
@@ -117,7 +119,7 @@ export default Footer;
 
 // Media
 const customMedia = generateMedia({
-  tablet: '740px'
+  tablet: "740px"
 });
 
 // Main Footer Container
@@ -135,7 +137,7 @@ const FooterContainer = styled.footer`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 2rem;
-    ${customMedia.lessThan('tablet')`
+    ${customMedia.lessThan("tablet")`
       grid-template-columns: repeat(2, 1fr);
     `}
   }

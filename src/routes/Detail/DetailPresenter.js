@@ -1,5 +1,5 @@
 import React from "react";
 
 export default () => {
-  return <>Detail</>;
+  return <>Made by DOSIMPACT - KIM DO YOUNG</>;
 };

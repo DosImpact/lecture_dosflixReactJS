@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
-
+import { useInterval } from "../hooks/useInterval";
 //할일, 예상 시간, 타임랩스 visible
 
 const useTimer = initTime => {
   const [timer, setTimer] = useState(initTime);
+
+  //   useInterval(() => {
+  //     setTimer(timer - 1);
+  //   }, 1000);
 
   useEffect(() => {
     if (!timer) return;

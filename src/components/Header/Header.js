@@ -1,11 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
-export default () => (
-  <>
-    <header>
-      <Link to="/">Home</Link>
-      <Link to="/pricing">pricing</Link>
-    </header>
-  </>
-);
+import { withRouter, Link } from "react-router-dom";
+export default withRouter(({ location: { pathname } }) => (
+  <header>
+    {console.log(pathname)}
+    <Link to="/">Home</Link>
+    <Link to="/detail">Detail</Link>
+  </header>
+));

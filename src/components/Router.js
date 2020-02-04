@@ -1,17 +1,23 @@
-import React, { Component } from "react";
-import { HashRouter, Switch, Redirect, Route } from "react-router-dom";
+import React from "react";
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import Header from "./Header";
-import Home from "../pages/Home";
-import Pricing from "../pages/Pricing";
-export default () => {
-  return (
-    <HashRouter>
+import Home from "../routes/Home";
+import Detail from "../routes/Detail";
+
+export default () => (
+  <>
+    <Router>
       <Header />
       <Switch>
         <Route path="/" exact component={Home}></Route>
-        <Route path="/pricing" exact component={Pricing}></Route>
+        <Route path="/detail" exact component={Detail}></Route>
         <Redirect from="*" to="/"></Redirect>
       </Switch>
-    </HashRouter>
-  );
-};
+    </Router>
+  </>
+);

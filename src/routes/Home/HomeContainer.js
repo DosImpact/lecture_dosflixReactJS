@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import HomePresenter from "./HomePresenter";
 import useInput from "../../hooks/useInput";
@@ -28,11 +28,20 @@ const CREATE_USER = gql`
 
 const HomeContainer = () => {
   const { loading, error, data } = useQuery(USERS);
+  const [createUser, { createUserData }] = useMutation(CREATE_USER);
   const name = useInput("");
   const picture = useInput("");
   const password = useInput("");
   const handleOnSubmit = e => {
     e.preventDefault();
+    console.log(name, password, picture, "생성합니다.");
+    createUser({
+      variables: {
+        name: name.value,
+        password: password.value,
+        picture: picture.value
+      }
+    });
   };
   return (
     <>

@@ -2,6 +2,8 @@
 
 # 환경 설치
 
+- 최신버전으로 설치해야함.! yarn add apollo-boost @apollo/react-hooks graphql graphql-tag
+
 ```
 yarn add react-router-dom ( react-apollo@2.5 )??
 yarn add apollo-boost @apollo/react-hooks graphql graphql-tag

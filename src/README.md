@@ -3,7 +3,8 @@
 # 환경 설치
 
 ```
-yarn add react-router-dom graphql graphql-tag react-apollo@2.5 apollo-boost
+yarn add react-router-dom ( react-apollo@2.5 )??
+yarn add apollo-boost @apollo/react-hooks graphql graphql-tag
 ```
 
 ```js

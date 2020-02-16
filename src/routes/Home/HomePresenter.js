@@ -1,6 +1,7 @@
 import React from "react";
 import Name from "../../components/Name";
 import Weather from "../../components/Weather";
+import ToDo from "../../components/ToDo";
 
 export default () => {
   return (
@@ -8,6 +9,7 @@ export default () => {
       <div>
         <Name />
         <Weather />
+        <ToDo />
       </div>
     </>
   );

@@ -1,78 +1,8 @@
-import React, { useState } from "react";
-import { useQuery, useMutation } from "@apollo/react-hooks";
-import gql from "graphql-tag";
+import React from "react";
 import HomePresenter from "./HomePresenter";
-import useInput from "../../hooks/useInput";
 
-const USERS = gql`
-  {
-    Users {
-      id
-      name
-      password
-      picture
-    }
+export default class HomeContainer extends React.Component {
+  render() {
+    return <HomePresenter />;
   }
-`;
-
-const CREATE_USER = gql`
-  mutation CreateUser($name: String!, $password: String!, $picture: String) {
-    createUser(name: $name, password: $password, picture: $picture) {
-      id
-      name
-      picture
-      password
-    }
-  }
-`;
-
-const HomeContainer = () => {
-  const { loading, error, data } = useQuery(USERS);
-  const [createUser, { createUserData }] = useMutation(CREATE_USER);
-  const name = useInput("");
-  const picture = useInput("");
-  const password = useInput("");
-  const handleOnSubmit = e => {
-    e.preventDefault();
-    console.log(name, password, picture, "생성합니다.");
-    createUser({
-      variables: {
-        name: name.value,
-        password: password.value,
-        picture: picture.value
-      }
-    });
-  };
-  return (
-    <>
-      {loading && "loading..."}
-      {!loading && error && "ERROR : 404"}
-      {!loading && data && data.Users && <HomePresenter Users={data.Users} />}
-      <div>
-        <h2> Celeb User Create </h2>
-        <form onSubmit={handleOnSubmit}>
-          <input {...name}></input>
-          <input {...password}></input>
-          <input {...picture}></input>
-          <button>submit</button>
-        </form>
-      </div>
-    </>
-  );
-};
-
-export default HomeContainer;
-
-// export default class HomeContainer extends React.Component {
-//   render() {
-//     return (
-//       <Query query={HOME_PAGE}>
-//         {({ loading, data, error }) => {
-//           if (loading) return "loading..";
-//           if (error) return "something happened";
-//           return <HomePresenter Users={data.Users} />;
-//         }}
-//       </Query>
-//     );
-//   }
-// }
+}

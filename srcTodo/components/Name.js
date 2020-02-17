@@ -10,6 +10,7 @@ export default () => {
     const current = localStorage.getItem(NAME_LS);
     if (current !== null) {
       setName(current);
+      setshowInput(false);
     }
   }, []);
   const handleSubmit = e => {

@@ -28,7 +28,7 @@ const Title = styled.div`
   opacity: 0.6;
 `;
 
-class PictureTitle extends Component {
+class PictureTitleB extends Component {
   constructor(props) {
     super(props);
   }
@@ -36,7 +36,7 @@ class PictureTitle extends Component {
     const { picture, title } = this.props.data;
     return (
       <Box>
-        <span>기본형 basic</span>
+        <span>기본형B</span>
         {picture ? (
           <Bg img={picture}>{title && <Title>{title}</Title>}</Bg>
         ) : null}
@@ -45,7 +45,7 @@ class PictureTitle extends Component {
   }
 }
 
-export default PictureTitle;
+export default PictureTitleB;
 /**
  * 해당 박스에 사진 다 채우고
  * 제목 왼 위

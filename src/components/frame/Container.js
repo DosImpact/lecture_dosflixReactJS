@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Box = styled.div`
   margin: 0px auto;
   width: 970px;
-  background-color: goldenrod;
+  background-color: white;
 `;
 
 const GridBox = styled.div`
@@ -19,7 +19,6 @@ const GridBox = styled.div`
     width: 850px;
     height: 800px;
     padding: 20px;
-    background-color: gray;
   }
 `;
 

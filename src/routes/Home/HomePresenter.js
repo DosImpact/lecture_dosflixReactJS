@@ -1,11 +1,13 @@
 import React from "react";
-import Container from "../../components/frame/Container";
 import styled from "styled-components";
 
-const SContainer = styled(Container)`
-  background: red;
-`;
-
-export default () => {
-  return <SContainer>HOME</SContainer>;
+import Container from "../../components/frame/Container";
+import { PictureTitle } from "../../components/Elements";
+import { getComponent } from "../../Selector/getComponent";
+export default ({ Temp_Data }) => {
+  return (
+    <Container>
+      {Temp_Data.map(e => getComponent({ data: e.data, Meta: e.Meta }))}
+    </Container>
+  );
 };

@@ -24,14 +24,14 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) => (
         </Helmet>
         {nowPlaying && nowPlaying.length > 0 && (
           <Section title="Now Playing">
-            {nowPlaying.map(movie => (
+            {nowPlaying.map((movie) => (
               <Poster
                 key={movie.id}
                 id={movie.id}
                 imageUrl={movie.poster_path}
                 title={movie.original_title}
                 rating={movie.vote_average}
-                year={movie.release_date.substring(0, 4)}
+                year={movie.release_date && movie.release_date.substring(0, 4)}
                 isMovie={true}
               />
             ))}
@@ -39,14 +39,14 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) => (
         )}
         {upcoming && upcoming.length > 0 && (
           <Section title="Upcoming Movies">
-            {upcoming.map(movie => (
+            {upcoming.map((movie) => (
               <Poster
                 key={movie.id}
                 id={movie.id}
                 imageUrl={movie.poster_path}
                 title={movie.original_title}
                 rating={movie.vote_average}
-                year={movie.release_date.substring(0, 4)}
+                year={movie.release_date && movie.release_date.substring(0, 4)}
                 isMovie={true}
               />
             ))}
@@ -54,14 +54,14 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) => (
         )}
         {popular && popular.length > 0 && (
           <Section title="Popular Movies">
-            {popular.map(movie => (
+            {popular.map((movie) => (
               <Poster
                 key={movie.id}
                 id={movie.id}
                 imageUrl={movie.poster_path}
                 title={movie.original_title}
                 rating={movie.vote_average}
-                year={movie.release_date.substring(0, 4)}
+                year={movie.release_date && movie.release_date.substring(0, 4)}
                 isMovie={true}
               />
             ))}
@@ -78,6 +78,6 @@ HomePresenter.propTypes = {
   popular: PropTypes.array,
   upcoming: PropTypes.array,
   loading: PropTypes.bool.isRequired,
-  error: PropTypes.string
+  error: PropTypes.string,
 };
 export default HomePresenter;
